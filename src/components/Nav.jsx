@@ -34,7 +34,6 @@ import {
 } from "../redux/Slices/cellSlice";
 import { setAlgorithm } from "../redux/Slices/algoSlice";
 import Dijkstra from "../algorithms/Dijkstra";
-import AStar from "../algorithms/AStar";
 import recursiveDivision from "../mazes/RecursiveDivision";
 import WeightedMaze from "../mazes/WeightedMaze";
 import weightImg from "../../public/weight.svg";
@@ -78,8 +77,6 @@ const Nav = () => {
         ? bfs(start, end, wallNode)
         : algorithm === "Dijkstra"
         ? Dijkstra(start, end, wallNode, weightNode)
-        : algorithm === "AStar"
-        ? AStar(start, end, wallNode, weightNode)
         : { visited: [], path: [] };
     // console.log("visited", result.visited);
     dispatch(setVisitedNodes(result.visited));
@@ -238,15 +235,6 @@ const Nav = () => {
               }}
             >
               Dijkstra's Algorithm
-            </MenuItem>
-            <MenuItem
-              bg={"gray.600"}
-              _hover={{ bg: "gray.700" }}
-              onClick={() => {
-                dispatch(setAlgorithm("AStar"));
-              }}
-            >
-              A* Algorithm
             </MenuItem>
             <MenuItem
               bg={"gray.600"}
